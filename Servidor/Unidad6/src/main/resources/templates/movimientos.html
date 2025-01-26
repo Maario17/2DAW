@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Movimientos de la Cuenta</title>
+</head>
+<body>
+    <div>
+        <h2>Movimientos de la Cuenta</h2>
+        <div th:if="${errorMessage}" class="error">
+            <p th:text="${errorMessage}"></p>
+        </div>
+        <div th:if="${!#lists.isEmpty(listaMovimientosDTO)}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td><b>ID</b></td>
+                        <td><b>Tipo</b></td>
+                        <td><b>Fecha de Operacion</b></td>
+                        <td><b>Descripcion</b></td>
+                        <td><b>Importe</b></td>
+                        <td><b>Ver</b></td>
+                        <td><b>Editar</b></td>
+                        <td><b>Eliminar</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="movimiento : ${listaMovimientosDTO}">
+                        <td th:text="${movimiento.id}"></td>
+                        <td th:text="${movimiento.tipo}"></td>
+                        <td th:text="${movimiento.fechaOperacion}"></td>
+                        <td th:text="${movimiento.descripcion}"></td>
+                        <td th:text="${movimiento.importe}"></td>
+                        <td>
+                            <a th:href="@{/clientes/{idCliente}/cuentas/{idCuenta}/movimientos/{id}(idCliente=${clienteDTO.id}, idCuenta=${cuentaDTO.id}, id=${movimiento.id})}">
+                                Ver
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/clientes/{idCliente}/cuentas/{idCuenta}/movimientos/{id}/update(idCliente=${clienteDTO.id}, idCuenta=${cuentaDTO.id}, id=${movimiento.id})}">
+                                Editar
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/clientes/{idCliente}/cuentas/{idCuenta}/movimientos/{id}/delete(idCliente=${clienteDTO.id}, idCuenta=${cuentaDTO.id}, id=${movimiento.id})}">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br>
+    <div>
+        <a th:href="@{/clientes/{idCliente}/cuentas/{idCuenta}/movimientos/add(idCliente=${clienteDTO.id}, idCuenta=${cuentaDTO.id})}">
+            Agregar Movimiento
+        </a>
+        <br><br>
+        <a th:href="@{/clientes/{idCliente}/cuentas(idCliente=${clienteDTO.id})}">
+            Volver a Cuentas
+        </a>
+    </div>
+</body>
+</html>

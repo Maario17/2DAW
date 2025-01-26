@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Añadir / Editar Dirección</title>
+</head>
+
+<body>
+    <div>
+        <h2 th:if="${direccionDTO.id == null}">
+            Añadir nueva dirección para el cliente <span th:utext="${clienteDTO.nombre}"></span> 
+            <span th:utext="${clienteDTO.apellidos}"></span>
+        </h2>
+        <h2 th:if="${direccionDTO.id != null}">
+            Editar dirección para el cliente <span th:utext="${clienteDTO.nombre}"></span> 
+            <span th:utext="${clienteDTO.apellidos}"></span>
+        </h2>
+
+        <form th:action="@{/clientes/{idCliente}/direcciones/save (idCliente=${clienteDTO.id})}" 
+              th:object="${direccionDTO}" method="post">
+            <div>
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" th:field="*{descripcion}" required/>
+            </div>
+            <div>
+                <label for="pais">País:</label>
+                <input type="text" id="pais" th:field="*{pais}" required/>
+            </div>
+            <div>
+                <label for="cp">Código Postal:</label>
+                <input type="text" id="cp" th:field="*{cp}" required/>
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+
+        <br>
+        <a th:href="@{/clientes/{idCliente}/direcciones (idCliente=${clienteDTO.id})}">Volver</a>
+    </div>
+</body>
+
+</html>

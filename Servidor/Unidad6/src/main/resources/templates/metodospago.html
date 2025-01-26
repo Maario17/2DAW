@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Metodos de Pago</title>
+</head>
+
+<body>
+    <h2>Metodos de Pago </h2>
+    <div th:if="${errorMessage}" class="error">
+        <p th:text="${errorMessage}"></p>
+    </div>
+    <table th:if="${!#lists.isEmpty(listaMetodosPagoDTO)}" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo de Metodo de Pago</th>
+                <th>Titular</th>
+				<th>Fecha Alta</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="clientemetodopago : ${listaMetodosPagoDTO}">
+                <td><a th:href="@{/clientes/{idCliente}/metodos-pago/{idMetodoPago}(idCliente=${idCliente}, idMetodoPago=${clientemetodopago.metodoPagoDTO.id})}" th:text="${clientemetodopago.metodoPagoDTO.id}"></a></td>
+                <td th:text="${clientemetodopago.metodoPagoDTO.tipo}"></td>
+                <td th:text="${clientemetodopago.metodoPagoDTO.titular}"></td>
+				<td th:text="${#dates.format(clientemetodopago.fechaAlta, 'dd-MM-yyyy HH:mm')}"></td>
+                <td>
+                    <a th:href="@{/clientes/{idCliente}/metodos-pago/{idMetodoPago}/update(idCliente=${idCliente}, idMetodoPago=${clientemetodopago.metodoPagoDTO.id})}">
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/clientes/{idCliente}/metodos-pago/{idMetodoPago}/delete(idCliente=${idCliente}, idMetodoPago=${clientemetodopago.metodoPagoDTO.id})}">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/clientes/{idCliente}/metodos-pago/add(idCliente=${idCliente})}">Agregar Metodo de Pago</a>
+    <br><br>
+    <a th:href="@{/clientes}">Volver a Clientes</a>
+</body>
+
+</html>

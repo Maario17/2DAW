@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/styles/style.css}" rel="stylesheet">
+	<title th:text="${titulo}"></title>
+</head>
+
+<body>
+	<h1 th:utext="${titulo}"></h1>
+	<br>
+	<center>
+	<a th:href="@{/clientes}">Gestión de clientes</a>
+	</center>
+	<br>
+	<br>
+	<p th:utext="${nombreAsignatura}"></p>
+</body>
+
+</html>

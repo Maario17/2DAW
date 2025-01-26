@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Departamentos del Cliente</title>
+</head>
+
+<body>
+    <h2>Departamentos del Cliente</h2>
+    <div th:if="${errorMessage}" class="error">
+        <p th:text="${errorMessage}"></p>
+    </div>
+    <table th:if="${!#lists.isEmpty(listaDepartamentosDTO)}" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ciudad</th>
+                <th>Especializacion</th>
+				<th>Fecha Alta</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="clientedepartamento : ${listaDepartamentosDTO}">
+				<td><a th:href="@{/clientes/{idCliente}/departamentos/{idDepartamento} (idCliente=${idCliente}, idDepartamento=${clientedepartamento.departamentoDTO.id})}" th:text="${clientedepartamento.departamentoDTO.id}"></a></td>
+                <td th:text="${clientedepartamento.departamentoDTO.ciudad}"></td>
+                <td th:text="${clientedepartamento.departamentoDTO.especializacion}"></td>
+				<td th:text="${#dates.format(clientedepartamento.fechaAlta, 'dd-MM-yyyy HH:mm')}"></td>
+                </td>
+                <td>
+                    <a th:href="@{/clientes/{idCliente}/departamentos/{idDepartamento}/update(idCliente=${idCliente}, idDepartamento=${clientedepartamento.departamentoDTO.id})}">
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/clientes/{idCliente}/departamentos/{idDepartamento}/delete(idCliente=${idCliente}, idDepartamento=${clientedepartamento.departamentoDTO.id})}">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/clientes/{idCliente}/departamentos/add(idCliente=${idCliente})}">Agregar Departamento</a>
+    <br><br>
+    <a th:href="@{/clientes}">Volver a Clientes</a>
+</body>
+
+</html>

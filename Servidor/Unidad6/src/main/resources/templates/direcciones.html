@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+	<link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Mantenimiento de direcciones</title>
+</head>
+
+<body>
+    <div>
+        <br>
+        <h2 th:if="${listaClientesDireccionesDTO.isEmpty()}">
+            No hay direcciones para el cliente <span th:utext="${clienteDTO.nombre}"></span> 
+            <span th:utext="${clienteDTO.apellidos}"></span>
+        </h2>
+
+        <div th:if="${!listaClientesDireccionesDTO.isEmpty()}">
+            <h2>Mantenimiento de direcciones del cliente 
+                <span th:utext="${clienteDTO.nombre}"></span> 
+                <span th:utext="${clienteDTO.apellidos}"></span>
+            </h2>
+            <br>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripcion</th>
+                        <th>Pais</th>
+                        <th>CP</th>
+                        <th>Fecha Alta</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="clienteDireccionDTO : ${listaClientesDireccionesDTO}">
+                        <td th:text="${clienteDireccionDTO.direccionDTO.id}">...</td>
+                        <td th:text="${clienteDireccionDTO.direccionDTO.descripcion}">...</td>
+                        <td th:text="${clienteDireccionDTO.direccionDTO.pais}">...</td>
+                        <td th:text="${clienteDireccionDTO.direccionDTO.cp}">...</td>
+                        <td th:text="${#dates.format(clienteDireccionDTO.fechaAlta, 'dd-MM-yyyy HH:mm')}">...</td>
+                        <td>
+                            <a th:href="@{/clientes/{idCliente}/direcciones/eliminar/{idDireccion} (idCliente=${clienteDTO.id}, idDireccion=${clienteDireccionDTO.direccionDTO.id})}">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div>
+            <a th:href="@{/clientes/{idCliente}/direcciones/add (idCliente=${clienteDTO.id})}">Nueva direccion</a>
+            <br>
+			<a th:href="@{/clientes/{idCliente}/direcciones/asignar (idCliente=${clienteDTO.id})}">Asignar dirección existente</a>
+			<br>
+            <a th:href="@{/clientes}">Volver a la lista de clientes</a>
+        </div>
+    </div>
+</body>
+
+</html>

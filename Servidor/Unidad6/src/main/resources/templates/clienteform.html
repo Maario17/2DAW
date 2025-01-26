@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/styles/style.css}" rel="stylesheet">
+	<title th:text="${add} ? 'Nuevo cliente' : 'Actualizar cliente'"></title>
+</head>
+
+<body>
+	<h1 th:text="${add} ? 'Nuevo cliente' : 'Actualizar cliente'"></h1>
+	<br>
+	<form th:action="@{/clientes/save}" th:object="${clienteDTO}" method="POST">
+		<div>
+		    <label for="id">ID:</label>
+		    <input id="id" type="hidden" th:field="*{id}" />
+		</div>
+	    <div>
+	        <label for="nif">NIF:</label>
+	        <input id="nif" type="text" th:field="*{nif}" />
+	        <div th:if="${#fields.hasErrors('nif')}" th:errors="*{nif}" class="error"></div>
+	    </div>
+	    <div>
+	        <label for="nombre">Nombre:</label>
+	        <input id="nombre" type="text" th:field="*{nombre}" />
+	        <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></div>
+	    </div>
+	    <div>
+	        <label for="apellidos">Apellidos:</label>
+	        <input id="apellidos" type="text" th:field="*{apellidos}" />
+	        <div th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="error"></div>
+	    </div>
+	    <div>
+	        <label for="claveSeguridad">Clave de Seguridad:</label>
+	        <input id="claveSeguridad" type="text" th:field="*{claveSeguridad}" />
+	        <div th:if="${#fields.hasErrors('claveSeguridad')}" th:errors="*{claveSeguridad}" class="error"></div>
+	    </div>
+	    <div>
+	        <label for="email">Email:</label>
+	        <input id="email" type="email" th:field="*{email}" />
+	        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+	    </div>
+		<div>
+			<label for="recomendacion">Recomendación:</label>
+			<input id="recomendacion" type="text" th:field="*{recomendacionDTO.observaciones}" />
+		</div>
+	    <input type="hidden" th:field="*{recomendacionDTO.id}">
+		<div>
+			<label for="fechaNacimiento">Fecha de Nacimiento:</label>
+			<input id="fechaNacimiento" type="date" th:field="*{fechaNacimiento}" />
+			<div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="error"></div>
+		</div>
+
+	    <button type="submit">Guardar</button>
+	</form>
+	<br>
+	<a th:href="@{/clientes}">Volver a la lista de clientes</a>
+</body>
+
+</html>

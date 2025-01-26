@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Detalle del Movimiento</title>
+</head>
+<body>
+    <div>
+        <h2>Detalle del Movimiento</h2>
+        <div>
+            <p><b>ID:</b> <span th:text="${movimientoDTO.id}"></span></p>
+            <p><b>Tipo:</b> <span th:text="${movimientoDTO.tipo}"></span></p>
+            <p><b>Fecha de Operacion:</b> <span th:text="${movimientoDTO.fechaOperacion}"></span></p>
+            <p><b>Descripcion:</b> <span th:text="${movimientoDTO.descripcion}"></span></p>
+            <p><b>Importe:</b> <span th:text="${movimientoDTO.importe}"></span></p>
+            <p><b>Cuenta Origen:</b> <span th:text="${movimientoDTO.cuentaOrigen.numeroCuenta}"></span></p>
+            <p><b>Cuenta Destino:</b> <span th:text="${movimientoDTO.cuentaDestino.numeroCuenta}"></span></p>
+        </div>
+    </div>
+
+    <br>
+    <div>
+        <a th:href="@{/clientes/{idCliente}/cuentas/{idCuenta}/movimientos(idCliente=${clienteDTO.id}, idCuenta=${cuentaDTO.id})}">
+            Volver a Movimientos
+        </a>
+    </div>
+</body>
+</html>

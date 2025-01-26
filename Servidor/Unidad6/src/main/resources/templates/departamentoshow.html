@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Detalles del Departamento</title>
+</head>
+
+<body>
+    <h2>Detalles del Departamento</h2>
+    <p><b>ID:</b> <span th:text="${departamentoDTO.id}"></span></p>
+    <p><b>Ciudad:</b> <span th:text="${departamentoDTO.ciudad}"></span></p>
+    <p><b>Especializacion:</b> <span th:text="${departamentoDTO.especializacion}"></span></p>
+    <br>
+    <a th:href="@{/clientes/{idCliente}/departamentos(idCliente=${idCliente})}">Volver a Departamentos</a>
+</body>
+
+</html>

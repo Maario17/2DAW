@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #111;
+    text-align: center;
+}
+
+a {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #000;
+}
+
+p {
+    font-size: 1.1em;
+    text-align: center;
+    color: #666;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, td, th {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+td {
+    background-color: #fff;
+}
+
+tr:hover {
+    background-color: #e0e0e0;
+}
+
+input[type="submit"], a.button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover, a.button:hover {
+    background-color: #333;
+}
+
+div {
+    margin: 0 auto;
+}
+
+input{
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #f9f9f9;
+	color: #333;
+}
+
+select{
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #f9f9f9;
+	color: #333;
+}
+
+
+input:focus{
+	border-color: #555;
+	outline: none;
+}
+
+
+table td:nth-child(2) {
+    width: 10px;
+}
+
+button, a.button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    background-color: #444;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+button:hover, a.button:hover {
+    background-color: #222;
+}
+
+button:focus, a.button:focus {
+    outline: none;
+}
+
+a.button {
+    background-color: #555;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 4px;
+}
+
+a.button:hover {
+    background-color: #222;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}

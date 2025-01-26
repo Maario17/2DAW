@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+	<link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Mantenimiento de clientes</title>
+</head>
+
+<body>
+    <div>
+        <br>
+        <h2 th:if="${listaClientesDTO.isEmpty()}">
+            No hay clientes disponibles.
+        </h2>
+
+        <div th:if="${!#lists.isEmpty(listaClientesDTO)}">
+            <h2>Mantenimiento de clientes</h2>
+            <br>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>NIF</th>
+                        <th>Correo electrónico</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Ver Cuentas</th>
+                        <th>Ver Direcciones</th>
+                        <th>Ver Departamentos</th>
+                        <th>Ver Métodos de Pago</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${listaClientesDTO}">
+                        <td><a th:href="@{/clientes/{idCliente}(idCliente=${item.id})}" th:text="${item.id}"></a></td>
+                        <td th:text="${item.nombre}"></td>
+                        <td th:text="${item.apellidos}"></td>
+                        <td th:text="${item.nif}"></td>
+                        <td th:text="${item.email}"></td>
+                        <td th:text="${item.fechaNacimiento}"></td>
+                        <td><a th:href="@{/clientes/{idCliente}/cuentas(idCliente=${item.id})}">Ver Cuentas</a></td>
+                        <td><a th:href="@{/clientes/{idCliente}/direcciones(idCliente=${item.id})}">Ver Direcciones</a></td>
+                        <td><a th:href="@{/clientes/{idCliente}/departamentos(idCliente=${item.id})}">Ver Departamentos</a></td>
+                        <td><a th:href="@{/clientes/{idCliente}/metodos-pago(idCliente=${item.id})}">Ver Métodos de Pago</a></td>
+                        <td><a th:href="@{/clientes/update/{idCliente}(idCliente=${item.id})}">Editar</a></td>
+                        <td><a th:href="@{/clientes/delete/{idCliente}(idCliente=${item.id})}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div>
+            <a th:href="@{/clientes/add}">Agregar nuevo cliente</a>
+            <br><br>
+            <a th:href="@{/}">Volver al inicio</a>
+        </div>
+    </div>
+</body>
+
+</html>

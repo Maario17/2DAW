@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Asignar direccion</title>
+</head>
+
+<body>
+    <h2>Asignar direccion al cliente <span th:text="${clienteDTO.nombre}"></span> <span th:text="${clienteDTO.apellidos}"></span></h2>
+	
+	<form th:action="@{/clientes/{idCliente}/direcciones/asignar (idCliente=${clienteDTO.id})}" method="post">
+	    <label for="direccion">Selecciona una direccion:</label>
+	    <select id="direccion" name="direccionId">
+	        <option th:each="direccion : ${direccionesDisponibles}" 
+					th:value="${direccion.id}" 
+	                th:text="${direccion.pais} + ' - ' + ${direccion.descripcion} + ' - ' + ${direccion.cp}"></option>
+	    </select>
+	    <button type="submit">Asignar Direccion</button>
+	</form>
+	
+    <a th:href="@{/clientes/{idCliente}/direcciones (idCliente=${clienteDTO.id})}">Volver a las direcciones del cliente</a>
+</body>
+
+</html>

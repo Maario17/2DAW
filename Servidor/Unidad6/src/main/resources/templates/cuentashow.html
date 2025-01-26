@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Detalles de la Cuenta</title>
+</head>
+
+<body>
+    <h2>Detalles de la Cuenta</h2>
+    <p><b>ID:</b> <span th:text="${cuentaDTO.id}"></span></p>
+    <p><b>Banco:</b> <span th:text="${cuentaDTO.banco}"></span></p>
+    <p><b>Sucursal:</b> <span th:text="${cuentaDTO.sucursal}"></span></p>
+    <p><b>DC:</b> <span th:text="${cuentaDTO.dc}"></span></p>
+    <p><b>Saldo Actual:</b> <span th:text="${cuentaDTO.saldoActual}"></span></p>
+    <p><b>Número de Cuenta:</b> <span th:text="${cuentaDTO.numeroCuenta}"></span></p>
+    <br>
+    <a th:href="@{/clientes/{idCliente}/cuentas(idCliente=${idCliente})}">Volver a Cuentas</a>
+</body>
+
+</html>

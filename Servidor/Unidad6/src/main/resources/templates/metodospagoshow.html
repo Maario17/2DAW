@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title>Detalles del Metodo de Pago</title>
+</head>
+
+<body>
+    <h2>Detalles del Metodo de Pago</h2>
+    <p><b>ID:</b> <span th:text="${metodoPagoDTO.id}"></span></p>
+    <p><b>Tipo:</b> <span th:text="${metodoPagoDTO.tipo}"></span></p>
+    <p><b>Titular:</b> <span th:text="${metodoPagoDTO.titular}"></span></p>
+    <br>
+    <a th:href="@{/clientes/{idCliente}/metodos-pago(idCliente=${idCliente})}">Volver a tus Metodos de Pago</a>
+</body>
+
+</html>

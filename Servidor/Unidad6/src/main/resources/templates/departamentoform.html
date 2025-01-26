@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title th:text="${add} ? 'Agregar Departamento' : 'Actualizar Departamento'"></title>
+</head>
+
+<body>
+    <div>
+        <h2 th:text="${add} ? 'Agregar Departamento' : 'Actualizar Departamento'"></h2>
+        <form th:action="@{/clientes/{idCliente}/departamentos/save(idCliente=${idCliente})}" th:object="${departamentoDTO}" method="post">
+            <div th:if="${!add}">
+                <label for="id">ID del Departamento:</label>
+                <input type="text" id="id" th:field="*{id}" readonly />
+            </div>
+            <div>
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" id="ciudad" th:field="*{ciudad}" />
+                <div th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}">Error</div>
+            </div>
+            <div>
+                <label for="especializacion">Especializacion:</label>
+                <input type="text" id="especializacion" th:field="*{especializacion}" />
+                <div th:if="${#fields.hasErrors('especializacion')}" th:errors="*{especializacion}">Error</div>
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+        <br>
+        <a th:href="@{/clientes/{idCliente}/departamentos(idCliente=${idCliente})}">Volver a Departamentos</a>
+    </div>
+</body>
+
+</html>

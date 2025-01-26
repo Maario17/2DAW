@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/style.css}" rel="stylesheet">
+    <title th:text="${add} ? 'Agregar Metodo de Pago' : 'Actualizar Metodo de Pago'"></title>
+</head>
+
+<body>
+    <div>
+        <h2 th:text="${add} ? 'Agregar Metodo de Pago' : 'Actualizar Metodo de Pago'"></h2>
+        <form th:action="@{/clientes/{idCliente}/metodos-pago/save(idCliente=${idCliente})}" th:object="${metodoPagoDTO}" method="post">
+            <div th:if="${!add}">
+                <label for="id">ID del Metodo de Pago:</label>
+                <input type="text" id="id" th:field="*{id}" readonly />
+            </div>
+            <div>
+                <label for="tipo">Tipo:</label>
+                <input type="text" id="tipo" th:field="*{tipo}" />
+                <div th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}">Error</div>
+            </div>
+            <div>
+                <label for="titular">Titular:</label>
+                <input type="text" id="titular" th:field="*{titular}" />
+                <div th:if="${#fields.hasErrors('titular')}" th:errors="*{titular}">Error</div>
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+        <br>
+        <a th:href="@{/clientes/{idCliente}/metodos-pago(idCliente=${idCliente})}">Volver a tus Metodos de Pago</a>
+    </div>
+</body>
+
+</html>
